@@ -123,9 +123,7 @@
     <a href="#ambition" onclick="playSound('My Ambition')">Ambition</a>
 </nav>
 
-    <!-- Back button -->
-   <a href="https://esteban-hub-lab.github.io/my-personal-profile/" class="back-btn" onclick="thankYou(event)">Back to Welcome Page</a>
-
+    
     <div class="container">
 
         <div id="personal" class="section fade-in section-box">
@@ -183,28 +181,6 @@
 
     </div>
 
-<script>
-function thankYou(event) {
-    event.preventDefault(); // stop immediate redirect
-
-    const message = new SpeechSynthesisUtterance("Thank you for visiting my personal profile");
-    message.pitch = 0.8;
-    message.rate = 0.95;
-
-    const voices = speechSynthesis.getVoices();
-    const filipinoVoice = voices.find(voice => 
-        voice.lang === "fil-PH" || voice.lang === "tl-PH"
-    );
-    if(filipinoVoice) message.voice = filipinoVoice;
-
-    speechSynthesis.speak(message);
-
-    // Redirect after 2 seconds
-    setTimeout(function() {
-        window.location.href = "WelcomePage.html";
-    }, 2000);
-}
-</script>⁸
 
 <script>
 function playSound(sectionName) {
