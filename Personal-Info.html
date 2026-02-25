@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Personal Profile</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ff5f6d, #ffc371); /* gradient style */
+            color: #333;
+        }
+
+        nav {
+            padding: 15px;
+            background: rgba(255,255,255,0.8);
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            border-bottom: 2px solid #fff;
+        }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #ff5f6d;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin: 20px;
+            padding: 10px 20px;
+            background: #fff;
+            color: #ff5f6d;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #ff5f6d;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .section-box {
+            border: 2px solid #fff;
+            border-radius: 10px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            text-align: left; /* left align text */
+        }
+
+        h2 {
+            font-size: clamp(32px, 4vw, 40px);
+            border-bottom: 2px solid #ff5f6d;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            text-align: left; /* left align headings */
+        }
+
+        p, li {
+            font-size: clamp(20px, 2.5vw, 26px);
+            line-height: 1.6;
+            overflow-wrap: break-word;
+        }
+
+        ul {
+            list-style-type: square;
+            padding-left: 30px;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section:target {
+            display: block;
+        }
+
+        /* Default show Personal Info */
+        body:not(:has(:target)) #personal {
+            display: block;
+        }
+
+        /* Fade-in animation */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+   <nav>
+    <a href="#personal" onclick="playSound('Personal Information')">Personal Info</a>
+    <a href="#education" onclick="playSound('Educational Background')">Education</a>
+    <a href="#about" onclick="playSound('About Me')">About Me</a>
+    <a href="#likes" onclick="playSound('Likes and Dislikes')">Likes & Dislikes</a>
+    <a href="#ambition" onclick="playSound('My Ambition')">Ambition</a>
+</nav>
+
+    <!-- Back button -->
+   <a href="./" class="back-btn" onclick="thankYou(event)">Back to Welcome Page</a>
+
+    <div class="container">
+
+        <div id="personal" class="section fade-in section-box">
+            <h2>Personal Information</h2>
+            <p><strong>Name:</strong> John Steve Amodia</p>
+            <p><strong>Age:</strong> 24 Years Old</p>
+            <p><strong>Course:</strong> BS Information Technology</p>
+            <p><strong>Location:</strong> Purok-8, Lapasan, Clarin, Misamis Occidental</p>
+            <p><strong>Religion:</strong> Asembly of God</p>
+            <p><strong>Sex:</strong> Male</p>
+            <p><strong>Contact No:</strong> 09852639871</p>
+        </div>
+
+        <div id="education" class="section fade-in section-box">
+    <h2>Educational Background</h2>
+    <p><strong>College:</strong> Northwestern Mindanao State College of Science and Technology</p>
+    <p>Bachelor of Science in Information Technology</p>
+    <p>Labuyo, Tangub City</p>
+    <p><strong>Senior High School:</strong> Clarin National High School</p>
+    <p>Technical Vocational Livelihood - Shielded Metal Arc Welding</p>
+    <p>Poblacion 3, Clarin, Misamis Occidental</p>
+</div>
+
+        <div id="about" class="section fade-in section-box">
+            <h2>About Me</h2>
+            <p>
+                I am a motivated and hardworking Bachelor of Science in Information Technology student who is passionate about technology and continuous learning. I enjoy exploring programming, web development, and cybersecurity, and I always strive to improve my technical and problem-solving skills. I am dedicated to growing both personally and professionally so I can become a skilled and responsible IT professional in the future.
+            </p>
+        </div>
+
+        <div id="likes" class="section fade-in section-box">
+            <h2>Likes & Dislikes</h2>
+            <p><strong>Likes:</strong></p>
+            <ul>
+                <li>Programming</li>
+                <li>Online Games</li>
+                <li>Ethical Hacking</li>
+                <li>Watching Tech Videos</li>
+            </ul>
+
+            <p><strong>Dislikes:</strong></p>
+            <ul>
+                <li>Procrastination</li>
+                <li>Negative Environment</li>
+                <li>Slow Internet Connection</li>
+            </ul>
+        </div>
+
+        <div id="ambition" class="section fade-in section-box">
+            <h2>My Ambition</h2>
+            <p>
+                My ambition is to become a successful cybersecurity specialist and ethical hacker who can protect systems and organizations from cyber threats. I aim to use my knowledge and skills in Information Technology to help create secure digital environments and contribute positively to the growing field of technology.
+            </p>
+        </div>
+
+    </div>
+
+<script>
+function thankYou(event) {
+    event.preventDefault(); // stop immediate redirect
+
+    const message = new SpeechSynthesisUtterance("Thank you for visiting my personal profile");
+    message.pitch = 0.8;
+    message.rate = 0.95;
+
+    const voices = speechSynthesis.getVoices();
+    const filipinoVoice = voices.find(voice => 
+        voice.lang === "fil-PH" || voice.lang === "tl-PH"
+    );
+    if(filipinoVoice) message.voice = filipinoVoice;
+
+    speechSynthesis.speak(message);
+
+    // Redirect after 2 seconds
+    setTimeout(function() {
+        window.location.href = "WelcomePage.html";
+    }, 2000);
+}
+</script>⁸
+
+<script>
+function playSound(sectionName) {
+
+    const message = new SpeechSynthesisUtterance("Now viewing " + sectionName);
+
+    // Make it sound more male
+    message.pitch = 0.8;   // lower pitch = deeper voice
+    message.rate = 0.95;   // slightly slower
+
+    // Try to find Filipino voice
+    const voices = speechSynthesis.getVoices();
+    const filipinoVoice = voices.find(voice => 
+        voice.lang === "fil-PH" || voice.lang === "tl-PH"
+    );
+
+    if (filipinoVoice) {
+        message.voice = filipinoVoice;
+    }
+
+    speechSynthesis.speak(message);
+}
+
+// Needed to properly load voices
+speechSynthesis.onvoiceschanged = () => {
+    speechSynthesis.getVoices();
+};
+</script>
+
+</body>
+</html>

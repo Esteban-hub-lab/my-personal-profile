@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to My Personal Profile</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ff5f6d, #ffc371);
+            min-height: 100vh;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .welcome-box {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            max-width: 600px;
+            text-align: left; /* left-aligned text */
+            animation: fadeIn 1.5s forwards;
+        }
+
+        h1 {
+            font-size: clamp(36px, 5vw, 48px);
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: clamp(20px, 2.5vw, 26px);
+            line-height: 1.6;
+        }
+
+        .get-started-btn {
+    display: block;
+    width: fit-content;
+    margin: 30px auto 0 auto; /* centers the button */
+    padding: 15px 30px;
+    background: #ff5f6d;
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+        .get-started-btn:hover {
+            background: #ffc371;
+            color: #333;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="welcome-box">
+        <h1>Welcome to My Personal Profile</h1>
+        <p>
+            Hello! I’m John Steve Amodia, a passionate IT student. Explore my personal information, educational background, and ambitions by clicking the “ENTER” button below.
+        </p>
+       <a href="Personal-Info.html" class="get-started-btn" onclick="speakWelcome(event)">ENTER</a>
+
+<script>
+function speakWelcome(event) {
+    event.preventDefault(); // stop immediate redirect
+    
+    const message = new SpeechSynthesisUtterance("Welcome to my Personal Profile, Just Click the navigation menu on the top of this page for more information");
+    message.pitch = 0.8;   // deeper/male voice
+    message.rate = 0.95;   // slightly slower
+
+    const voices = speechSynthesis.getVoices();
+    const filipinoVoice = voices.find(voice => 
+        voice.lang === "fil-PH" || voice.lang === "tl-PH"
+    );
+    if(filipinoVoice) message.voice = filipinoVoice;
+
+    speechSynthesis.speak(message);
+
+    // Redirect after 2 seconds
+    setTimeout(function() {
+        window.location.href = "Personal-Info.html";
+    }, 2000);
+}
+
+// Ensure voices are loaded
+speechSynthesis.onvoiceschanged = () => { speechSynthesis.getVoices(); };
+</script>
+
+</body>
+</html>
