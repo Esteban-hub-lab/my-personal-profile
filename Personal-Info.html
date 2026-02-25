@@ -32,6 +32,23 @@
             color: #ff5f6d;
         }
 
+        .back-btn {
+            display: inline-block;
+            margin: 20px;
+            padding: 10px 20px;
+            background: #fff;
+            color: #ff5f6d;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #ff5f6d;
+            color: #fff;
+        }
+
         .container {
             max-width: 900px;
             margin: 40px auto;
@@ -106,7 +123,9 @@
     <a href="#ambition" onclick="playSound('My Ambition')">Ambition</a>
 </nav>
 
-    
+    <!-- Back button -->
+   <a href="./" class="back-btn" onclick="thankYou(event)">Back to Welcome Page</a>
+
     <div class="container">
 
         <div id="personal" class="section fade-in section-box">
@@ -164,6 +183,28 @@
 
     </div>
 
+<script>
+function thankYou(event) {
+    event.preventDefault(); // stop immediate redirect
+
+    const message = new SpeechSynthesisUtterance("Thank you for visiting my personal profile");
+    message.pitch = 0.8;
+    message.rate = 0.95;
+
+    const voices = speechSynthesis.getVoices();
+    const filipinoVoice = voices.find(voice => 
+        voice.lang === "fil-PH" || voice.lang === "tl-PH"
+    );
+    if(filipinoVoice) message.voice = filipinoVoice;
+
+    speechSynthesis.speak(message);
+
+    // Redirect after 2 seconds
+    setTimeout(function() {
+        window.location.href = "./";
+    }, 2000);
+}
+</script>⁸
 
 <script>
 function playSound(sectionName) {
